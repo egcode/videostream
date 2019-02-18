@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		32C71607A83933AD863D35DD /* Pods_VideoStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CBD4230C33368B34947BFC /* Pods_VideoStream.framework */; };
+		6A6052A7221A5D1F003E6D18 /* ViewController+WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6052A6221A5D1F003E6D18 /* ViewController+WebSocket.swift */; };
 		6A68F5CD2219ED5E0062FE5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A68F5CC2219ED5E0062FE5C /* AppDelegate.swift */; };
 		6A68F5CF2219ED5E0062FE5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A68F5CE2219ED5E0062FE5C /* ViewController.swift */; };
 		6A68F5D22219ED5E0062FE5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A68F5D02219ED5E0062FE5C /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		04CE0E458B88F00E11597511 /* Pods-VideoStream.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStream.release.xcconfig"; path = "Pods/Target Support Files/Pods-VideoStream/Pods-VideoStream.release.xcconfig"; sourceTree = "<group>"; };
 		6A6052A22219F7A5003E6D18 /* VideoStream-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VideoStream-Bridging-Header.h"; sourceTree = "<group>"; };
+		6A6052A6221A5D1F003E6D18 /* ViewController+WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+WebSocket.swift"; sourceTree = "<group>"; };
 		6A68F5C92219ED5E0062FE5C /* VideoStream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoStream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A68F5CC2219ED5E0062FE5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A68F5CE2219ED5E0062FE5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			children = (
 				6A68F5CC2219ED5E0062FE5C /* AppDelegate.swift */,
 				6A68F5CE2219ED5E0062FE5C /* ViewController.swift */,
+				6A6052A6221A5D1F003E6D18 /* ViewController+WebSocket.swift */,
 				6A68F5D02219ED5E0062FE5C /* Main.storyboard */,
 				6A68F5D32219ED610062FE5C /* Assets.xcassets */,
 				6A68F5D52219ED610062FE5C /* LaunchScreen.storyboard */,
@@ -204,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A68F5CF2219ED5E0062FE5C /* ViewController.swift in Sources */,
+				6A6052A7221A5D1F003E6D18 /* ViewController+WebSocket.swift in Sources */,
 				6A68F5CD2219ED5E0062FE5C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
