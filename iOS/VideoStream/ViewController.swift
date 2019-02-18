@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     
     var websocket:SRWebSocket?
     
+    var messagesCount = 0
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -47,6 +49,7 @@ class ViewController: UIViewController {
     @IBAction func sendMessage(_ sender: UIButton) {
         if let txt = self.textFieldInput.text, txt != "" {
             self.websocket?.send(txt)
+            self.textFieldInput.text = ""
         }
     }
 }
@@ -66,8 +69,18 @@ extension ViewController: SRWebSocketDelegate {
     }
     
     func webSocket(_ webSocket: SRWebSocket!, didReceiveMessage message: Any!) {
-        print("MESSAGE: \(String(describing: message))")
-        self.textViewMessages.text = String(describing: message)
+        if let m = message as? String {
+            let newNessage = "\(self.messagesCount). \(m)"
+            if self.messagesCount == 0 {
+                self.textViewMessages.text = newNessage
+                self.messagesCount += 1
+            } else {
+                self.textViewMessages.text += "\n\(newNessage)"
+                self.messagesCount += 1
+            }
+        } else {
+            print("Error: \(String(describing: message))")
+        }
     }
     
     func webSocket(_ webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
