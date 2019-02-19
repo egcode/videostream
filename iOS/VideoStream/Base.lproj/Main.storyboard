@@ -31,19 +31,20 @@
                                 <rect key="frame" x="0.0" y="590" width="375" height="77"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FkY-9e-U6b">
-                                        <rect key="frame" x="8" y="23.5" width="25" height="30"/>
+                                        <rect key="frame" x="10" y="24" width="284" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="uKN-Dc-1xD"/>
+                                            <constraint firstAttribute="height" constant="30" id="ofz-28-agE"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1n9-aT-Iy6">
-                                        <rect key="frame" x="41" y="23.5" width="326" height="30"/>
+                                        <rect key="frame" x="302" y="24" width="65" height="30"/>
                                         <color key="backgroundColor" red="0.35130729779999997" green="0.760583868" blue="0.22928808040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="C6O-7n-eMj"/>
+                                            <constraint firstAttribute="width" constant="65" id="0sj-gi-Hu1"/>
+                                            <constraint firstAttribute="height" constant="30" id="dME-VW-xbM"/>
                                         </constraints>
                                         <state key="normal" title="Send">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -55,12 +56,12 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.035243196390000002" green="0.74279095279999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstItem="1n9-aT-Iy6" firstAttribute="centerY" secondItem="mxj-78-C4D" secondAttribute="centerY" id="3ei-9t-VMi"/>
-                                    <constraint firstAttribute="trailing" secondItem="1n9-aT-Iy6" secondAttribute="trailing" constant="8" id="8aU-uI-isN"/>
-                                    <constraint firstItem="1n9-aT-Iy6" firstAttribute="leading" secondItem="FkY-9e-U6b" secondAttribute="trailing" constant="8" id="Li6-dD-szf"/>
+                                    <constraint firstItem="FkY-9e-U6b" firstAttribute="centerY" secondItem="1n9-aT-Iy6" secondAttribute="centerY" id="2R9-Wo-Odm"/>
+                                    <constraint firstItem="1n9-aT-Iy6" firstAttribute="leading" secondItem="FkY-9e-U6b" secondAttribute="trailing" constant="8" id="Pt1-cO-tK8"/>
+                                    <constraint firstItem="FkY-9e-U6b" firstAttribute="leading" secondItem="mxj-78-C4D" secondAttribute="leading" constant="10" id="T8j-LR-N7g"/>
                                     <constraint firstAttribute="height" constant="77" id="V10-2c-KLg"/>
-                                    <constraint firstItem="FkY-9e-U6b" firstAttribute="leading" secondItem="mxj-78-C4D" secondAttribute="leading" constant="8" id="owz-Xg-39t"/>
-                                    <constraint firstItem="FkY-9e-U6b" firstAttribute="centerY" secondItem="mxj-78-C4D" secondAttribute="centerY" id="vxn-Ey-fVG"/>
+                                    <constraint firstAttribute="bottom" secondItem="1n9-aT-Iy6" secondAttribute="bottom" constant="23" id="ZBp-eV-Zs0"/>
+                                    <constraint firstAttribute="trailing" secondItem="1n9-aT-Iy6" secondAttribute="trailing" constant="8" id="f0j-9C-5Dg"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sgr-bB-gUs">

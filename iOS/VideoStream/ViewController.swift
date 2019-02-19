@@ -48,13 +48,23 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.viewDidLoadSend()
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            self.viewDidLoadSend()
+        } else {
+            self.cameraView.backgroundColor = UIColor.red
+        }
+
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-       self.viewDidLayoutSubviewsSend()
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            self.viewDidLayoutSubviewsSend()
+        } else {
+            self.cameraView.backgroundColor = UIColor.red
+        }
+
 
     }
 
