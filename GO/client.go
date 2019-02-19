@@ -70,7 +70,10 @@ func (c *Client) readPump() {
 			break
 		}
 		message = bytes.TrimSpace(bytes.Replace(message, newline, space, -1))
-		c.hub.broadcast <- message
+		c.hub.broadcast <- &BroadcastMessage{
+			Data:   message,
+			Sender: c,
+		}
 	}
 }
 
