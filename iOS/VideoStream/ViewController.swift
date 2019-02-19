@@ -7,8 +7,34 @@
 //
 
 import UIKit
+import AVFoundation
+import VideoToolbox
 
 class ViewController: UIViewController {
+    
+    
+    ///////////////////////////////////////////////////////////
+    ///////////////////////SEND VIDEO PARAMS///////////////////
+    let captureSession = AVCaptureSession()
+    let captureQueue = DispatchQueue(label: "videotoolbox.compression.capture")
+    let compressionQueue = DispatchQueue(label: "videotoolbox.compression.compression")
+    lazy var preview: AVCaptureVideoPreviewLayer = {
+        let preview = AVCaptureVideoPreviewLayer(session: self.captureSession)
+        preview.videoGravity = .resizeAspectFill
+        view.layer.addSublayer(preview)
+        
+        return preview
+    }()
+    var compressionSession: VTCompressionSession?
+    var fileHandler: FileHandle?
+    var isCapturing: Bool = false
+    //////////////////////////////////////////
+    @IBOutlet weak var cameraView: UIView!
+    
+    
+    
+    
+    
     
     @IBOutlet weak var textViewMessages: UITextView!
     @IBOutlet weak var textFieldInput: UITextField!
@@ -21,7 +47,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        self.viewDidLoadSend()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+       self.viewDidLayoutSubviewsSend()
+
     }
 
     override func viewDidDisappear(_ animated: Bool) {
