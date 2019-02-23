@@ -12,6 +12,8 @@ import VideoToolbox
 
 fileprivate var NALUHeader: [UInt8] = [0, 0, 0, 1]
 
+var counter = 0
+
 
 // In fact, most of the hardcoded uses of VideoToolbox are push-streamed NAL Units instead of writing to a local H.264 file.
 // If you want to save to local, using AVAssetWriter is a better choice, it will also be hardcoded internally.
@@ -140,7 +142,7 @@ extension ViewController {
         
     func viewDidLoadSend() {
 
-        let path = NSTemporaryDirectory() + "/temp.h264"
+        let path = NSTemporaryDirectory() + "/\(counter).h264"
         try? FileManager.default.removeItem(atPath: path)
         if FileManager.default.createFile(atPath: path, contents: nil, attributes: nil) {
             fileHandler = FileHandle(forWritingAtPath: path)
@@ -171,18 +173,13 @@ extension ViewController {
         }
         
         captureSession.startRunning()
+        
+        // Button Setup
+        startButton.addTarget(self, action: #selector(startOrNot), for: .touchUpInside)
     }
     
     func viewDidLayoutSubviewsSend() {
         preview.frame = self.cameraView.bounds
-        
-        let button = UIButton(type: .roundedRect)
-        button.setTitle("Click Me", for: .normal)
-        button.backgroundColor = .red
-        button.addTarget(self, action: #selector(startOrNot), for: .touchUpInside)
-        button.frame = CGRect(x: 100, y: 200, width: 100, height: 40)
-        
-        self.cameraView.addSubview(button)
     }
 }
 
@@ -285,7 +282,10 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     func handle(sps: NSData, pps: NSData) {
-        guard let fh = fileHandler else {
+        counter += 1
+        print("⚠️⚠️⚠️⚠️⚠️⚠️⚠️ Real iFrame: \(counter)")
+        
+        guard let fh = recreateFileHandle(count: counter) else {
             return
         }
         
@@ -297,12 +297,32 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     func encode(data: NSData, isKeyFrame: Bool) {
+        //        counter += 1
+        print("❕ COUNTER22222 Encoded Frame: \(counter)")
+        
         guard let fh = fileHandler else {
             return
         }
+        
         let headerData: NSData = NSData(bytes: NALUHeader, length: NALUHeader.count)
         fh.write(headerData as Data)
         fh.write(data as Data)
     }
+    
+    
+    
+    func recreateFileHandle(count: Int) -> FileHandle? {
+        if fileHandler != nil {
+            fileHandler = nil
+        }
+        
+        let path = NSTemporaryDirectory() + "/\(count).h264"
+        if FileManager.default.createFile(atPath: path, contents: nil, attributes: nil) {
+            fileHandler = FileHandle(forWritingAtPath: path)
+        }
+        return fileHandler
+    }
+    
+    
 }
 

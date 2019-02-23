@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     //////////////////////////////////////////
     @IBOutlet weak var cameraView: UIView!
     
+    @IBOutlet weak var startButton: UIButton!
     
     
     
