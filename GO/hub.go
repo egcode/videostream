@@ -4,6 +4,8 @@
 
 package main
 
+import "fmt"
+
 // Hub maintains the set of active clients and broadcasts messages to the
 // clients.
 type Hub struct {
@@ -44,6 +46,7 @@ func (h *Hub) run() {
 			for client := range h.clients {
 
 				if message.Sender != client {
+					fmt.Println("-- Video Data: ", message.Data)
 
 					select {
 					case client.send <- message.Data:

@@ -33,7 +33,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var startButton: UIButton!
     
-    
+    var videoFromWebSocketFileHandler: FileHandle?
+
     
     
     
@@ -77,6 +78,16 @@ class ViewController: UIViewController {
         }
     }
     
+    // MARK: - Remove keyboard
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first
+        if touch?.phase == UITouchPhase.began {
+            touch?.view?.endEditing(true)
+        }
+    }
+
+    
     // MARK: - Buttons
     
     @IBAction func sendPing(_ sender: UIBarButtonItem) {
@@ -87,6 +98,9 @@ class ViewController: UIViewController {
     
     @IBAction func reconnect(_ sender: UIBarButtonItem) {
         self.websocket = SRWebSocket(url: URL(string: "ws://localhost:8080/ws"))
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            self.websocket = SRWebSocket(url: URL(string: "ws://192.168.1.207:8080/ws"))
+        }
         self.websocket?.delegate = self
         self.title = "Opening Connection..."
         self.websocket?.open()

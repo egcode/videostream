@@ -13,6 +13,14 @@ extension ViewController: SRWebSocketDelegate {
     func webSocketDidOpen(_ webSocket: SRWebSocket!) {
         print("✅Websocket Connected")
         self.title = "Connected"
+        
+        
+        let path = NSTemporaryDirectory() + "/video.h264"
+        if FileManager.default.createFile(atPath: path, contents: nil, attributes: nil) {
+            videoFromWebSocketFileHandler = FileHandle(forWritingAtPath: path)
+        }
+
+        
     }
     
     func webSocket(_ webSocket: SRWebSocket!, didFailWithError error: Error!) {
@@ -22,24 +30,40 @@ extension ViewController: SRWebSocketDelegate {
     }
     
     func webSocket(_ webSocket: SRWebSocket!, didReceiveMessage message: Any!) {
-        if let m = message as? String {
-            let newNessage = "\(self.messagesCount). \(m)"
-            if self.messagesCount == 0 {
-                self.textViewMessages.text = newNessage
-                self.messagesCount += 1
-            } else {
-                self.textViewMessages.text += "\n\(newNessage)"
-                self.messagesCount += 1
-            }
-        } else {
-            print("Error: \(String(describing: message))")
+//        if let m = message as? String {
+//            let newNessage = "\(self.messagesCount). \(m)"
+//            if self.messagesCount == 0 {
+//                self.textViewMessages.text = newNessage
+//                self.messagesCount += 1
+//            } else {
+//                self.textViewMessages.text += "\n\(newNessage)"
+//                self.messagesCount += 1
+//            }
+//        } else {
+//            print("Error: \(String(describing: message))")
+//        }
+        
+        // Decode base64
+        if let vd = message as? String,
+            let videoData = NSData(base64Encoded: vd, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters),
+            let fh = self.videoFromWebSocketFileHandler {
+            print("Got VideoData: \(videoData.length) bytes")
+            fh.write(videoData as Data)
+
+            
         }
+
     }
     
     func webSocket(_ webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
         print("WebSocket closed")
         self.title = "Connection Closed! (see logs)"
         self.websocket = nil;
+        
+        if let fh = videoFromWebSocketFileHandler {
+            fh.closeFile()
+        }
+        
     }
     func webSocket(_ webSocket: SRWebSocket!, didReceivePong pongPayload: Data!) {
         print("WebSocket received pong")

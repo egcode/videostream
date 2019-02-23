@@ -13,7 +13,7 @@ import VideoToolbox
 fileprivate var NALUHeader: [UInt8] = [0, 0, 0, 1]
 
 var counter = 0
-
+var videoData: NSMutableData?
 
 // In fact, most of the hardcoded uses of VideoToolbox are push-streamed NAL Units instead of writing to a local H.264 file.
 // If you want to save to local, using AVAssetWriter is a better choice, it will also be hardcoded internally.
@@ -285,44 +285,74 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         counter += 1
         print("⚠️⚠️⚠️⚠️⚠️⚠️⚠️ Real iFrame: \(counter)")
         
-        guard let fh = recreateFileHandle(count: counter) else {
-            return
-        }
         
-        let headerData: NSData = NSData(bytes: NALUHeader, length: NALUHeader.count)
-        fh.write(headerData as Data)
-        fh.write(sps as Data)
-        fh.write(headerData as Data)
-        fh.write(pps as Data)
+//        //////////////////////////
+//        // V1
+//        if let d = videoData {
+//            sendVideoData(data: d)
+//            videoData = nil
+//
+//            // Start new GOP from iFrame
+////            let headerData: NSData = NSData(bytes: NALUHeader, length: NALUHeader.count)
+//            videoData = NSMutableData(bytes: NALUHeader, length: NALUHeader.count) // init with header
+//            videoData?.append(sps as Data)
+//            videoData?.append(NSData(bytes: NALUHeader, length: NALUHeader.count) as Data) // append header
+//            videoData?.append(pps as Data)
+//        }
+//        // End of V1
+//        //////////////////////////
+
+        
+        
+        //////////////////////////
+        // V2
+        let headerData: NSMutableData = NSMutableData(bytes: NALUHeader, length: NALUHeader.count)
+        headerData.append(sps as Data)
+        headerData.append(NSData(bytes: NALUHeader, length: NALUHeader.count) as Data) // append header
+        headerData.append(pps as Data)
+        sendVideoData(data: headerData)
+        // End of V2
+        //////////////////////////
+
     }
     
     func encode(data: NSData, isKeyFrame: Bool) {
         //        counter += 1
         print("❕ COUNTER22222 Encoded Frame: \(counter)")
         
-        guard let fh = fileHandler else {
-            return
-        }
         
-        let headerData: NSData = NSData(bytes: NALUHeader, length: NALUHeader.count)
-        fh.write(headerData as Data)
-        fh.write(data as Data)
-    }
-    
-    
-    
-    func recreateFileHandle(count: Int) -> FileHandle? {
-        if fileHandler != nil {
-            fileHandler = nil
-        }
+//        //////////////////////////
+//        // V1
+//        let headerData: NSData = NSData(bytes: NALUHeader, length: NALUHeader.count)
+//        if let d = videoData {
+//            d.append(headerData as Data)
+//            d.append(data as Data)
+//        } else {
+//            videoData = NSMutableData(bytes: NALUHeader, length: NALUHeader.count) // init with header
+//            videoData?.append(data as Data)
+//        }
+//        // End of V1
+//        //////////////////////////
         
-        let path = NSTemporaryDirectory() + "/\(count).h264"
-        if FileManager.default.createFile(atPath: path, contents: nil, attributes: nil) {
-            fileHandler = FileHandle(forWritingAtPath: path)
-        }
-        return fileHandler
+        
+        
+        //////////////////////////
+        // V2
+        let headerData: NSMutableData = NSMutableData(bytes: NALUHeader, length: NALUHeader.count)
+        headerData.append(data as Data)
+        sendVideoData(data: headerData)
+        // End of V2
+        //////////////////////////
+
     }
+
     
-    
+    func sendVideoData(data:NSMutableData) {
+        let base64Data = data.base64EncodedData(options: NSData.Base64EncodingOptions.endLineWithLineFeed)
+
+        self.websocket?.send(base64Data)
+//        self.websocket?.send("shit")
+
+    }
 }
 
