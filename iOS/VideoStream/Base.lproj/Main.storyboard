@@ -81,19 +81,41 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="start"/>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yOL-rm-AER">
+                                <rect key="frame" x="0.0" y="369" width="233" height="213"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHe-Ld-LnA">
+                                <rect key="frame" x="302" y="552" width="64" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.01164490638" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="7PY-YX-tCL"/>
+                                    <constraint firstAttribute="height" constant="30" id="WGk-zX-esM"/>
+                                </constraints>
+                                <state key="normal" title="play"/>
+                                <connections>
+                                    <action selector="playClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Pk-oL-f3R"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="yOL-rm-AER" firstAttribute="top" secondItem="nRV-Na-Q3w" secondAttribute="bottom" constant="16" id="14e-pG-8qI"/>
                             <constraint firstItem="fMe-Bg-44g" firstAttribute="top" secondItem="sgr-bB-gUs" secondAttribute="top" id="5IO-gW-Qei"/>
                             <constraint firstItem="fMe-Bg-44g" firstAttribute="leading" secondItem="sgr-bB-gUs" secondAttribute="trailing" constant="44" id="Cxg-5h-2UA"/>
+                            <constraint firstItem="fMe-Bg-44g" firstAttribute="leading" secondItem="yOL-rm-AER" secondAttribute="trailing" constant="8" id="Kr9-nx-vlF"/>
                             <constraint firstItem="sgr-bB-gUs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="L43-bB-tYr"/>
                             <constraint firstItem="mxj-78-C4D" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OYo-w5-WB5"/>
+                            <constraint firstItem="mxj-78-C4D" firstAttribute="top" secondItem="HHe-Ld-LnA" secondAttribute="bottom" constant="8" id="Oun-Qo-Lqx"/>
                             <constraint firstItem="mxj-78-C4D" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="XSm-S6-ihz"/>
                             <constraint firstItem="mxj-78-C4D" firstAttribute="top" secondItem="fMe-Bg-44g" secondAttribute="bottom" constant="93" id="YIu-8U-Fyn"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HHe-Ld-LnA" secondAttribute="trailing" constant="9" id="bye-VV-X4n"/>
                             <constraint firstItem="nRV-Na-Q3w" firstAttribute="top" secondItem="sgr-bB-gUs" secondAttribute="bottom" constant="8" id="f2E-9r-bt6"/>
+                            <constraint firstItem="yOL-rm-AER" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fhy-uM-HGF"/>
                             <constraint firstItem="nRV-Na-Q3w" firstAttribute="centerX" secondItem="sgr-bB-gUs" secondAttribute="centerX" id="gE9-7f-Zlq"/>
                             <constraint firstItem="fMe-Bg-44g" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ira-cR-cFE"/>
                             <constraint firstItem="mxj-78-C4D" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="kDj-9m-fPS"/>
+                            <constraint firstItem="mxj-78-C4D" firstAttribute="top" secondItem="yOL-rm-AER" secondAttribute="bottom" constant="8" id="nVS-pY-a54"/>
                             <constraint firstItem="sgr-bB-gUs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zdW-YQ-Y35"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -112,6 +134,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cameraView" destination="sgr-bB-gUs" id="4Ub-GO-hlP"/>
+                        <outlet property="receivedView" destination="yOL-rm-AER" id="iAW-AX-O1u"/>
                         <outlet property="startButton" destination="nRV-Na-Q3w" id="jy1-HD-1ga"/>
                         <outlet property="textFieldInput" destination="FkY-9e-U6b" id="6CY-bY-QW5"/>
                         <outlet property="textViewMessages" destination="fMe-Bg-44g" id="6M6-Te-AUn"/>

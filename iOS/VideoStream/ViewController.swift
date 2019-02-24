@@ -29,8 +29,25 @@ class ViewController: UIViewController {
     var fileHandler: FileHandle?
     var isCapturing: Bool = false
     //////////////////////////////////////////
-    @IBOutlet weak var cameraView: UIView!
     
+    
+    ///////////////////////////////////////////////////////////
+    ///////////////////////SEND RECEIVE PARAMS///////////////////
+    var formatDesc: CMVideoFormatDescription?
+    var decompressionSession: VTDecompressionSession?
+    var videoLayer: AVSampleBufferDisplayLayer?
+    
+    var spsSize: Int = 0
+    var ppsSize: Int = 0
+    
+    var sps: Array<UInt8>?
+    var pps: Array<UInt8>?
+
+    ///////////////////////////////////////////////////////////
+
+    
+    @IBOutlet weak var cameraView: UIView!
+    @IBOutlet weak var receivedView: UIView!
     @IBOutlet weak var startButton: UIButton!
     
     var videoFromWebSocketFileHandler: FileHandle?
@@ -55,6 +72,8 @@ class ViewController: UIViewController {
         } else {
             self.cameraView.backgroundColor = UIColor.red
         }
+        
+        self.viewDidLoadReceive()
 
     }
     

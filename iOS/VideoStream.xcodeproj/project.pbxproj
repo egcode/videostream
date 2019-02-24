@@ -16,6 +16,9 @@
 		6A68F5D22219ED5E0062FE5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A68F5D02219ED5E0062FE5C /* Main.storyboard */; };
 		6A68F5D42219ED610062FE5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A68F5D32219ED610062FE5C /* Assets.xcassets */; };
 		6A68F5D72219ED610062FE5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A68F5D52219ED610062FE5C /* LaunchScreen.storyboard */; };
+		6A735CE32222469600CA7F98 /* VideoFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A735CE22222469600CA7F98 /* VideoFileReader.swift */; };
+		6A735CE52222478600CA7F98 /* ViewController+Receive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A735CE42222478600CA7F98 /* ViewController+Receive.swift */; };
+		6A735CE7222248D000CA7F98 /* temp.h264 in Resources */ = {isa = PBXBuildFile; fileRef = 6A735CE6222248D000CA7F98 /* temp.h264 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		6A68F5D32219ED610062FE5C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A68F5D62219ED610062FE5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6A68F5D82219ED610062FE5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A735CE22222469600CA7F98 /* VideoFileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFileReader.swift; sourceTree = "<group>"; };
+		6A735CE42222478600CA7F98 /* ViewController+Receive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Receive.swift"; sourceTree = "<group>"; };
+		6A735CE6222248D000CA7F98 /* temp.h264 */ = {isa = PBXFileReference; lastKnownFileType = file; path = temp.h264; sourceTree = "<group>"; };
 		DD901BC98359CF8A53727244 /* Pods-VideoStream.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStream.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VideoStream/Pods-VideoStream.debug.xcconfig"; sourceTree = "<group>"; };
 		F4CBD4230C33368B34947BFC /* Pods_VideoStream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoStream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -90,6 +96,7 @@
 				6A68F5CE2219ED5E0062FE5C /* ViewController.swift */,
 				44B980CA221B908D00BEFB80 /* Socket */,
 				44B980CB221B90AF00BEFB80 /* VideoSend */,
+				6A735CE12222466D00CA7F98 /* VideoReceive */,
 				6A68F5D32219ED610062FE5C /* Assets.xcassets */,
 				6A68F5D02219ED5E0062FE5C /* Main.storyboard */,
 				6A68F5D52219ED610062FE5C /* LaunchScreen.storyboard */,
@@ -97,6 +104,16 @@
 				6A6052A22219F7A5003E6D18 /* VideoStream-Bridging-Header.h */,
 			);
 			path = VideoStream;
+			sourceTree = "<group>";
+		};
+		6A735CE12222466D00CA7F98 /* VideoReceive */ = {
+			isa = PBXGroup;
+			children = (
+				6A735CE6222248D000CA7F98 /* temp.h264 */,
+				6A735CE22222469600CA7F98 /* VideoFileReader.swift */,
+				6A735CE42222478600CA7F98 /* ViewController+Receive.swift */,
+			);
+			path = VideoReceive;
 			sourceTree = "<group>";
 		};
 		82B447779F02A11A7942C347 /* Frameworks */ = {
@@ -178,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A68F5D72219ED610062FE5C /* LaunchScreen.storyboard in Resources */,
+				6A735CE7222248D000CA7F98 /* temp.h264 in Resources */,
 				6A68F5D42219ED610062FE5C /* Assets.xcassets in Resources */,
 				6A68F5D22219ED5E0062FE5C /* Main.storyboard in Resources */,
 			);
@@ -229,8 +247,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A735CE52222478600CA7F98 /* ViewController+Receive.swift in Sources */,
 				44B980CD221B90D100BEFB80 /* ViewController+Send.swift in Sources */,
 				6A68F5CF2219ED5E0062FE5C /* ViewController.swift in Sources */,
+				6A735CE32222469600CA7F98 /* VideoFileReader.swift in Sources */,
 				44B980CF221B910500BEFB80 /* CVPixelBuffer+Extension.swift in Sources */,
 				6A6052A7221A5D1F003E6D18 /* ViewController+WebSocket.swift in Sources */,
 				6A68F5CD2219ED5E0062FE5C /* AppDelegate.swift in Sources */,
