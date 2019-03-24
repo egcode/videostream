@@ -1,6 +1,10 @@
 package com.example.yujin.push;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.media.MediaCodec;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,13 +38,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+//        if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.CAMERA}, 50);
+//        }
+        //If authorisation not granted for camera
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 50);
+        } else {
+            this.startCamera();
+        }
+
+
+    }
+
+    void startCamera() {
         File file = new File(this.getFilesDir(), "eugne5.h264");
         try {
             fs = new FileOutputStream(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
 
         mEncoderSurfaceView = (SurfaceView) findViewById(R.id.encoder_surface);
         mEncoderSurfaceView.getHolder().addCallback(mEncoderCallback);
@@ -50,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         mEncoder = new MyEncoder();
 //        mDecoder = new VideoDecoder();
+
     }
 
     private SurfaceHolder.Callback mEncoderCallback = new SurfaceHolder.Callback() {
