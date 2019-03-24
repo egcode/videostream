@@ -54,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
     void startCamera() {
         File file = new File(this.getFilesDir(), "eugne5.h264");
+        if(file.exists()) {
+            file.delete();
+        }
         try {
             fs = new FileOutputStream(file);
         } catch (FileNotFoundException e) {
