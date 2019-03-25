@@ -1,5 +1,6 @@
 package com.example.yujin.push;
 
+import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.media.MediaCodec;
 import android.media.MediaCodecInfo;
@@ -208,14 +209,15 @@ public class VideoEncoder {
 
         mSurfaceView.requestAspectRatio(mWidth / mHeight);
 
-        //parameters.setPreviewFormat(ImageFormat.YUV_420_888);
-        parameters.setPreviewSize(mWidth, mHeight);
+//        parameters.setPreviewFormat(ImageFormat.YUV_422_888);
+        parameters.setPreviewSize(mWidth,mHeight);
         //parameters.setPreviewFpsRange(30, 30);
 
         try {
             camera.setParameters(parameters);
 
-            camera.setDisplayOrientation(270);
+//            camera.setDisplayOrientation(270);
+            camera.setDisplayOrientation(90);
 
             camera.startPreview();
             previewStarted = true;
