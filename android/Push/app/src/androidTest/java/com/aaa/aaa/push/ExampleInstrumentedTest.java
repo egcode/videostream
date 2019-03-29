@@ -1,4 +1,4 @@
-package com.example.yujin.push;
+package com.aaa.aaa.push;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.yujin.push", appContext.getPackageName());
+        assertEquals("com.aaa.aaa.push", appContext.getPackageName());
     }
 }

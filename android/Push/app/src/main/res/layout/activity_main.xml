@@ -1,22 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/container"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:orientation="vertical"
-    android:weightSum="2">
+    android:layout_height="match_parent" >
 
-    <TextView
+    <SurfaceView
+        android:id="@+id/surfaceview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Some shit"
-        android:textColor="@android:color/background_dark" />
+        android:layout_height="match_parent"/>
 
-    <com.example.yujin.push.surface.SurfaceView
-        android:id="@+id/encoder_surface"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
 
-</LinearLayout>
+</RelativeLayout>

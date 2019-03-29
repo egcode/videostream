@@ -1,4 +1,4 @@
-package com.example.yujin.push;
+package com.aaa.aaa.push;
 
 import org.junit.Test;
 
