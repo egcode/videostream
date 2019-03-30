@@ -306,11 +306,13 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         //////////////////////////
         // V2
-        let headerData: NSMutableData = NSMutableData(bytes: NALUHeader, length: NALUHeader.count)
-        headerData.append(sps as Data)
-        headerData.append(NSData(bytes: NALUHeader, length: NALUHeader.count) as Data) // append header
-        headerData.append(pps as Data)
-        sendVideoData(data: headerData)
+        let headerData1: NSMutableData = NSMutableData(bytes: NALUHeader, length: NALUHeader.count)
+        headerData1.append(sps as Data)
+        sendVideoData(data: headerData1)
+        
+        let headerData2: NSMutableData = NSMutableData(bytes: NALUHeader, length: NALUHeader.count)
+        headerData2.append(pps as Data)
+        sendVideoData(data: headerData2)
         // End of V2
         //////////////////////////
 

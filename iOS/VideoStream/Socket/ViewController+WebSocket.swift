@@ -46,10 +46,12 @@ extension ViewController: SRWebSocketDelegate {
         // Decode base64
         if let vd = message as? String,
             let videoData = NSData(base64Encoded: vd, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters),
-            let fh = self.videoFromWebSocketFileHandler {
+            let _ = self.videoFromWebSocketFileHandler {
             print("Got VideoData: \(videoData.length) bytes")
-            fh.write(videoData as Data)
+//            fh.write(videoData as Data)
 
+            var packet = Array<UInt8>(videoData as Data)
+            self.receivedRawVideoFrame(&packet)
             
         }
 
