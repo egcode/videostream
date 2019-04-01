@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.concurrent.ArrayBlockingQueue;
 
 import android.Manifest;
@@ -36,7 +37,7 @@ import okhttp3.WebSocketListener;
 import okio.ByteString;
 
 
-public class MainActivity extends Activity  implements SurfaceHolder.Callback,PreviewCallback{
+public class MainActivity extends Activity  implements SurfaceHolder.Callback,PreviewCallback, EncodedVideoListener{
 
     private SurfaceView surfaceview;
     private SurfaceHolder surfaceHolder;
@@ -172,8 +173,8 @@ public class MainActivity extends Activity  implements SurfaceHolder.Callback,Pr
         camera = getBackCamera();
         startcamera(camera);
         avcCodec = new AvcEncoder(width,height,framerate,biterate, this);
+        avcCodec.addListener(this);// Listener
         avcCodec.StartEncoderThread();
-
     }
 
     @Override
@@ -256,6 +257,19 @@ public class MainActivity extends Activity  implements SurfaceHolder.Callback,Pr
             e.printStackTrace();
         }
         return c; // returns null if camera is unavailable
+    }
+
+
+    // VIDEO ENCODED
+    @Override
+    public void encodedVideo(byte[] videoBytes) {
+        byte[] encodedBytes = Base64.getEncoder().encode(videoBytes);
+        System.out.println("GotVideoBytes " + new String(encodedBytes));
+
+        if (this.ws != null) {
+            this.ws.send(new String(encodedBytes));
+        }
+
     }
 
 

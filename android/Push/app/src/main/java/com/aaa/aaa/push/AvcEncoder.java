@@ -14,7 +14,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
+
+interface EncodedVideoListener {
+    void encodedVideo(byte[] videoBytes);
+}
 
 
 public class AvcEncoder
@@ -31,6 +37,11 @@ public class AvcEncoder
 
     public byte[] configbyte;
 
+
+    private List<EncodedVideoListener> listeners = new ArrayList<EncodedVideoListener>();
+    public void addListener(EncodedVideoListener toAdd) {
+        listeners.add(toAdd);
+    }
 
 
     @SuppressLint("NewApi")
@@ -150,13 +161,23 @@ public class AvcEncoder
                                     System.arraycopy(outData, 0, keyframe, configbyte.length, outData.length);
 
 //                                    outputStream.write(keyframe, 0, keyframe.length);
-                                    byte[] encodedBytes = Base64.getEncoder().encode(keyframe);
-                                    System.out.println("keyframe " + new String(encodedBytes));
+//                                    byte[] encodedBytes = Base64.getEncoder().encode(keyframe);
+//                                    System.out.println("keyframe " + new String(encodedBytes));
+
+                                    // Notify everybody that may be interested in h264 VIDEO.
+                                    for (EncodedVideoListener hl : listeners)
+                                        hl.encodedVideo(keyframe);
+
 
                                 }else{
 //                                    outputStream.write(outData, 0, outData.length);
-                                    byte[] encodedBytes = Base64.getEncoder().encode(outData);
-                                    System.out.println("outData " + new String(encodedBytes));
+//                                    byte[] encodedBytes = Base64.getEncoder().encode(outData);
+//                                    System.out.println("outData " + new String(encodedBytes));
+
+                                    // Notify everybody that may be interested in h264 VIDEO.
+                                    for (EncodedVideoListener hl : listeners)
+                                        hl.encodedVideo(outData);
+
 
                                 }
 
