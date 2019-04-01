@@ -7,5 +7,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <Button
+        android:id="@+id/connect_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Connect"
+        android:layout_marginTop="40dp"
+        android:textSize="17sp"/>
+    <TextView
+        android:id="@+id/output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/connect_button"
+        android:layout_centerHorizontal="true"
+        android:textSize="16sp"
+        android:layout_marginTop="30dp"/>
+
+    <Button
+        android:id="@+id/send_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="send"
+        android:textSize="30sp" />
+
 
 </RelativeLayout>
