@@ -14,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
+import java.util.Base64;
 
 
 public class AvcEncoder
@@ -148,9 +149,15 @@ public class AvcEncoder
                                     System.arraycopy(configbyte, 0, keyframe, 0, configbyte.length);
                                     System.arraycopy(outData, 0, keyframe, configbyte.length, outData.length);
 
-                                    outputStream.write(keyframe, 0, keyframe.length);
+//                                    outputStream.write(keyframe, 0, keyframe.length);
+                                    byte[] encodedBytes = Base64.getEncoder().encode(keyframe);
+                                    System.out.println("keyframe " + new String(encodedBytes));
+
                                 }else{
-                                    outputStream.write(outData, 0, outData.length);
+//                                    outputStream.write(outData, 0, outData.length);
+                                    byte[] encodedBytes = Base64.getEncoder().encode(outData);
+                                    System.out.println("outData " + new String(encodedBytes));
+
                                 }
 
                                 mediaCodec.releaseOutputBuffer(outputBufferIndex, false);

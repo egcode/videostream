@@ -5,7 +5,7 @@ DEPENDENCIES:
   - SocketRocket
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - SocketRocket
 
 SPEC CHECKSUMS:
@@ -13,4 +13,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 7b9ba99c84273d4792fec0c69dfaf18fdfda493f
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

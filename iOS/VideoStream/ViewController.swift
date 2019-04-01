@@ -118,7 +118,8 @@ class ViewController: UIViewController {
     @IBAction func reconnect(_ sender: UIBarButtonItem) {
         self.websocket = SRWebSocket(url: URL(string: "ws://localhost:8080/ws"))
         if UIImagePickerController.isSourceTypeAvailable(.camera){
-            self.websocket = SRWebSocket(url: URL(string: "ws://192.168.1.207:8080/ws"))
+//            self.websocket = SRWebSocket(url: URL(string: "ws://192.168.1.207:8080/ws")) // HOME
+            self.websocket = SRWebSocket(url: URL(string: "ws://192.168.100.92:8080/ws")) // WORK
         }
         self.websocket?.delegate = self
         self.title = "Opening Connection..."

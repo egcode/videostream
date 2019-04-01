@@ -103,7 +103,8 @@ public class MainActivity extends Activity  implements SurfaceHolder.Callback,Pr
 
     private void connectWebsocket() {
 //        Request request = new Request.Builder().url("ws://echo.websocket.org").build();
-        Request request = new Request.Builder().url("ws://192.168.1.207:8080/ws").build();
+//        Request request = new Request.Builder().url("ws://192.168.1.207:8080/ws").build(); // HOME
+        Request request = new Request.Builder().url("ws://192.168.100.92:8080/ws").build(); // WORK
 
         this.listener = new EchoWebSocketListener();
         this.ws = client.newWebSocket(request, listener);
